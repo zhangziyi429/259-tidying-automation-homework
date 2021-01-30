@@ -30,16 +30,28 @@ ds_combined <- bind_rows(ds1, ds2, ds3)
 #ANSWER
 #YOUR GITHUB LINK: 
 
+
 ### Question 2 ---------- 
 
 #Use a for loop with paths to read the data in to a new tibble "ds_loop" so that the data are combined into a single dataset
 #(Yes, Vroom does this automatically but practice doing it with a loop)
 #If you did this correctly, it should look the same as ds_combined created above
 
+ds_loop <- data.frame()
+
+for (file in paths){
+  temp_ds <- read_csv(file)
+  ds_loop <- bind_rows(ds_loop, temp_ds)
+}
+
+
 ### Question 3 ----------
 
 #Use map with paths to read in the data to a single tibble called ds_map
 #If you did this correctly, it should look the same as ds_combined created above
+
+ds_map <- map(paths, read.csv)
+ds_map <- bind_rows(ds_map)
 
 ### Question 4 ----------
 
