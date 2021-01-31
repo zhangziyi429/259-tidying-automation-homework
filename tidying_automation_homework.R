@@ -29,6 +29,7 @@ ds_combined <- bind_rows(ds1, ds2, ds3)
 
 #ANSWER
 #YOUR GITHUB LINK: 
+# https://github.com/zhangziyi429/259-tidying-automation-homework
 
 
 ### Question 2 ---------- 
@@ -110,7 +111,12 @@ map(split_file, words_graph)
 #First, get the data formatted in the correct way
 #From ds_longer, create a new tibble "ds_wider" that has columns for words for each race and percentage for each race
 
+ds_wider <- ds_longer %>% pivot_wider(names_from = Race, values_from = c(Words, Percentage))
+?pivot_wider
+
 ### Question 9 ---------
 
 #Using your new "ds_wider" tibble, write the three data files using either a for loop or map
 #The files should be written to "data_cleaned" and should be named by film title
+
+
