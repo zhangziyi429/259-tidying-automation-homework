@@ -99,6 +99,10 @@ for (film_names in ds_longer$Film){
 #Apply the words_graph function again, but this time
 #use split and map to apply the function to each film separately
 
+?split
+split_file <- split(ds_longer, ds_longer$Film)
+map(split_file, words_graph)
+
 ### Question 8 ---------- 
 
 #The PI wants a .csv file for each film with a row for male and a row for female
