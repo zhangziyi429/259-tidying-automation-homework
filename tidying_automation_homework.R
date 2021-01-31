@@ -87,6 +87,13 @@ words_graph <- function(df) {
   print(p)
 }
 
+
+ds_longer <- ds_longer %>% rename(Sex = sex, Words = words, Percentage = percentage)
+
+for (film_names in ds_longer$Film){
+  words_graph(ds_longer)
+}
+
 ### Question 7 ----------
 
 #Apply the words_graph function again, but this time
