@@ -59,7 +59,7 @@ ds_map <- bind_rows(ds_map)
 #Use pivot_longer to reshape the data so that sex is a column with values male/female and words is a column
 #Use ds_combined or one of the ones you created in Question 2 or 3, and save the output to ds_longer
 
-ds_combined %>% pivot_longer(Female:Male, names_to = "sex", values_to = "words") 
+ds_longer <- ds_combined %>% pivot_longer(Female:Male, names_to = "sex", values_to = "words") 
 
 ### Question 5 ----------
 
@@ -68,6 +68,12 @@ ds_combined %>% pivot_longer(Female:Male, names_to = "sex", values_to = "words")
 #Merge it into ds_longer and then create a new column that expresses the words spoken as a percentage of the total
 total_words <- tibble(Film =  c("The Fellowship Of The Ring", "The Two Towers","The Return Of The King"),
                       Total = c(177277, 143436, 134462))
+
+ds_longer <- left_join(ds_longer, total_words)
+
+percentage <- ds_longer %>% unite(words, Total, col = "percentage", sep = "/")
+
+ds_longer <- ds_longer %>% add_column(percentage = percentage$percentage, .after = "Total")
 
 ### Question 6 ----------
 #The function below creates a graph to compare the words spoken by race/sex for a single film
